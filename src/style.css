@@ -15,7 +15,6 @@ ul {padding: 0;
 margin: 0;}
 
 li {list-style: none;
-    text-transform: capitalize;
     margin: 0 ;
     padding: 0;
 color: rgb(135, 135, 135) ;
@@ -24,6 +23,7 @@ font-weight: 100;
 line-height: 19px;
 }
 
+li:first-letter { text-transform: capitalize}
 
 
 .image {max-width: 900px;

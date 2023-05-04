@@ -1,5 +1,5 @@
 function formatDate(timestamp){
-    // calculate the date
+    // calculate the date  //timestamp is the milliseconds that have happened since 1970
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     let date = new Date(timestamp)
     let hours = date.getHours()
@@ -19,7 +19,9 @@ document.querySelector("#city").innerHTML= response.data.city
 document.querySelector("#description").innerHTML = response.data.condition.description 
 document.querySelector("#humidity").innerHTML = response.data.temperature.humidity
 document.querySelector("#wind").innerHTML =  Math.round(response.data.wind.speed)
-document.querySelector("#date").innerHTML = formatDate(response.data.time) }
+document.querySelector("#date").innerHTML = formatDate(response.data.time * 1000) 
+// we multiplied by 1000 to convert it to miliseconds 
+ }
 
 
 let apiKey ="d921b380ob8fd44ea6tdafd048cb353a"
