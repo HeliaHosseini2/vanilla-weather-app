@@ -21,11 +21,13 @@ document.querySelector("#humidity").innerHTML = response.data.temperature.humidi
 document.querySelector("#wind").innerHTML =  Math.round(response.data.wind.speed)
 document.querySelector("#date").innerHTML = formatDate(response.data.time * 1000) 
 // we multiplied by 1000 to convert it to miliseconds 
+document.querySelector("#icon").setAttribute("src", response.data.condition.icon_url)
+document.querySelector("#icon").setAttribute("alt", response.data.condition.description)
  }
 
 
 let apiKey ="d921b380ob8fd44ea6tdafd048cb353a"
-let city = "paris"
+let city = "san fransisco"
 let apiUrl =`https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`
 
 axios.get(apiUrl).then(displayTemperature)
