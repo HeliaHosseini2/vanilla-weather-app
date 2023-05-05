@@ -24,7 +24,10 @@ function formatDate(timestamp) {
   return `${day}  ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
+  console.log(response.data.daily);
+
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -53,7 +56,17 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "d921b380ob8fd44ea6tdafd048cb353a";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayTemperature(response) {
+  celsiusTemperature = response.data.temperature.current;
   console.log(response.data);
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.temperature.current
@@ -77,7 +90,7 @@ function displayTemperature(response) {
     .querySelector("#icon")
     .setAttribute("alt", response.data.condition.description);
 
-  celsiusTemperature = response.data.temperature.current;
+  getForecast(response.data.coordinates);
 }
 function search(city) {
   let apiKey = "d921b380ob8fd44ea6tdafd048cb353a";
@@ -125,4 +138,3 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 // the opposite of global variables are local variables
 
 search("tehran");
-displayForecast();
